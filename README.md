@@ -1,13 +1,12 @@
 
-# Portfólio — Edvaldo Elias (páginas separadas, com Formação Complementar)
+# Portfólio — Edvaldo Elias (v3.1)
 
-Páginas independentes:
-- `index.html` / `sobre.html` — Sobre mim
-- `formacao.html` — Formação
-- `docente.html` — Experiência Docente
-- `formacao-complementar.html` — Formação Complementar
-- `portfolio.html` — Projetos
-- `contato.html` — Formulário (validação JS + simulação)
+A página `portfolio.html` agora reúne:
+- **Projetos** (cards),
+- **Experiência Docente** (timeline),
+- **Formação Complementar** (lista de cursos).
+
+Demais páginas: `sobre.html`, `formacao.html`, `contato.html`.
 
 ## Publicação (GitHub Pages)
 1. Repositório público com estes arquivos.

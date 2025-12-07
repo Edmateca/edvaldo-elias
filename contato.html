@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Em construção — Edvaldo Elias</title>
-  <meta name="description" content="Em construção — Portfólio de Edvaldo Elias">
+  <title>Contato — Edvaldo Elias</title>
+  <meta name="description" content="Contato — Portfólio de Edvaldo Elias">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,19 +14,40 @@
   <nav class="nav" aria-label="Navegação principal">
     <a href="sobre.html">Sobre mim</a>
     <a href="formacao.html">Formação</a>
-    <a href="docente.html">Experiência Docente</a>
-    <a href="formacao-complementar.html">Formação Complementar</a>
     <a href="portfolio.html">Portfólio</a>
     <a href="contato.html">Contato</a>
   </nav>
   <button id="themeToggle" class="theme" aria-label="Alternar tema">🌙</button>
 </header>
   <main>
-    <section class="section"><div class="container"><h2>Página em construção</h2><p>Substituirei por conteúdo final na publicação.</p></div></section>
+    <section class="section alt">
+  <div class="container">
+    <h2>Contato</h2>
+    <form id="contactForm" novalidate>
+      <div class="form-field">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" placeholder="Seu nome" required>
+        <small class="error" id="err-name"></small>
+      </div>
+      <div class="form-field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="edvaldo_elias@hotmail.com" required>
+        <small class="error" id="err-email"></small>
+      </div>
+      <div class="form-field">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem" required></textarea>
+        <small class="error" id="err-message"></small>
+      </div>
+      <button type="submit" class="btn primary">Enviar</button>
+      <p class="success" id="successMsg" hidden>Mensagem enviada com sucesso!</p>
+    </form>
+  </div>
+</section>
   </main>
   <footer class="footer">
     <div class="container">
-      <p>© <span id="year"></span> Edvaldo Elias</p>
+      <p>© <span id="year"></span> Edvaldo Elias • <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </footer>
   <script src="script.js"></script>
