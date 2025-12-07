@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfólio — Edvaldo Elias</title>
+  <meta name="description" content="Portfólio pessoal de Edvaldo Elias — Ciências de Dados e Educação.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Edvaldo Elias</div>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#sobre">Sobre mim</a>
+      <a href="#formacao">Formação</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button id="themeToggle" class="theme" aria-label="Alternar tema">🌙</button>
+  </header>
+
+  <main>
+    <section id="sobre" class="section">
+      <div class="container">
+        <div class="grid two">
+          <img src="assets/profile-placeholder.png" alt="Foto de perfil" class="profile">
+          <div>
+            <h1>Olá! Eu sou o Edvaldo Elias 👋</h1>
+            <p>Professor Multidisciplinar com mais de 10 anos de experiência no ensino fundamental, médio e superior, especializado em Matemática, Física e Geografia. Cursando Ciências de Dados. Líder premiado em olimpíadas acadêmicas estaduais e nacionais. Tenho sólida formação em gestão estratégica e desenvolvimento de projetos tecnológicos, com destaque para a criação de sistemas ERP e plataformas educacionais.
+Professor finalista da Mostra de Ciências e Tecnologia 3M (3º Lugar),  Medalhista na OMASP 2024 e 2025 (Olimpiadas de Matemática de São Paulo – Escola Pública), sendo 45 alunos medalistas em 2024 de um total de 250 alunos do 2º e 3º anos do Ensino médio (EE Carlos Gomes), e 12 alunos medalistas em 2025 de um total de 120 alunos do 8º e 9º anos do Ensino Fundamenta Anos Finais (EE Barão de Ataliba Nogueira). Professor Lider do grupo semifinalista da OMU - 2024 (Olimpiadas Matemática da Unicamp), alunos do 3º ano do ensino médio EE Carlos Gomes.
+            </p>
+            <ul class="tags">
+              <li>Ciências de Dados</li>
+              <li>Matemática</li>
+              <li>Física</li>
+              <li>Geografia</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Delphi/Pascal</li>
+              <li>MySQL</li>
+            </ul>
+            <p class="note">Endereço: Rua Joaquim Vilac, 802 apto. 42 – Vila Teixeira – Campinas • E-mail: <a href="mailto:edvaldo_elias@hotmail.com">edvaldo_elias@hotmail.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao" class="section alt">
+      <div class="container">
+        <h2>Formação</h2>
+        <div class="timeline">
+          <article>
+            <h3>Graduação em Ciências de Dados</h3>
+            <p>UNINTER — 2024 (em andamento)</p>
+          </article>
+          <article>
+            <h3>Licenciatura em Geografia</h3>
+            <p>UNINTER — 2023</p>
+          </article>
+          <article>
+            <h3>Licenciatura em Matemática</h3>
+            <p>UNINTER — 2018</p>
+          </article>
+          <article>
+            <h3>Administração de Empresas</h3>
+            <p>IESCAMP — 2010</p>
+          </article>
+          <article>
+            <h3>MBA Planejamento e Gestão Estratégica</h3>
+            <p>UNINTER — 2011</p>
+          </article>
+          <article>
+            <h3>Extensões e cursos</h3>
+            <p>Estatística (IFRGS), Física (USP/UFSCAR), GeoGebra (UEPR), Probabilidade (UFSCar), entre outros.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <h2>Portfólio</h2>
+        <div class="grid three">
+          <article class="card"><h3>2019 – 2021 	Desenvolvimento de Site com as Ferramentas WordPress, HTML, PHP e Bando de Dados  MySQL e Maria DB.</h3><p>2019 – 2021 	Desenvolvimento de Site com as Ferramentas WordPress, HTML, PHP e Bando de Dados  MySQL e Maria DB.</p><a class="btn" href="#" target="_blank" rel="noopener">Detalhes</a></article><article class="card"><h3>2014 – 2020 	Desenvolvimento de Software Embarcadeiro – Delphi – Desktop e Mobile.</h3><p>2014 – 2020 	Desenvolvimento de Software Embarcadeiro – Delphi – Desktop e Mobile.</p><a class="btn" href="#" target="_blank" rel="noopener">Detalhes</a></article><article class="card"><h3>2004 - 2007	ART - Atendimento em Tempo Real</h3><p>2004 - 2007	ART - Atendimento em Tempo Real</p><a class="btn" href="#" target="_blank" rel="noopener">Detalhes</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="section alt">
+      <div class="container">
+        <h2>Contato</h2>
+        <form id="contactForm" novalidate>
+          <div class="form-field">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" placeholder="Seu nome" required>
+            <small class="error" id="err-name"></small>
+          </div>
+          <div class="form-field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="edvaldo_elias@hotmail.com" required>
+            <small class="error" id="err-email"></small>
+          </div>
+          <div class="form-field">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem" required></textarea>
+            <small class="error" id="err-message"></small>
+          </div>
+          <button type="submit" class="btn primary">Enviar</button>
+          <p class="success" id="successMsg" hidden>Mensagem enviada com sucesso!</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Edvaldo Elias • <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> • <a href="#" target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

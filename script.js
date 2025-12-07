@@ -1,0 +1,1 @@
+// script gerado anteriormente, idêntico ao template
