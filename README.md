@@ -1,14 +1,15 @@
 
-# Portfólio — Edvaldo Elias (páginas separadas)
+# Portfólio — Edvaldo Elias (páginas separadas, sem âncoras)
 
-Estrutura em HTML5/CSS3/JS **sem frameworks**, conforme atividade:
-- `index.html` e `sobre.html`: Sobre mim
-- `formacao.html`: Formação + Experiência Docente
-- `portfolio.html`: Projetos
-- `contato.html`: Formulário (validação JS + simulação de envio)
-- `styles.css`, `script.js`, `assets/`
+Páginas independentes:
+- `index.html` (alias de `sobre.html`)
+- `sobre.html` — Sobre mim
+- `formacao.html` — Formação
+- `docente.html` — Experiência Docente
+- `portfolio.html` — Projetos
+- `contato.html` — Formulário (validação JS + simulação)
 
-## Publicação (GitHub Pages)
-1. Crie um repositório público e envie estes arquivos.
-2. Em **Settings → Pages**, selecione a branch (ex.: `main`) e a pasta `/ (root)`.
-3. Acesse a URL `https://SEUUSUARIO.github.io/NOME-DO-REPO/`.
+## Publicação no GitHub Pages
+1. Repositório público com estes arquivos.
+2. **Settings → Pages**: branch `main`, pasta `/` (root).
+3. URL: `https://SEUUSUARIO.github.io/NOME-DO-REPO/`.
