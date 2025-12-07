@@ -1,12 +1,13 @@
 
-# Portfólio — Edvaldo Elias (v3.1)
+# Portfólio — Edvaldo Elias (v3.2)
 
-A página `portfolio.html` agora reúne:
+A página `portfolio.html` reúne:
 - **Projetos** (cards),
 - **Experiência Docente** (timeline),
-- **Formação Complementar** (lista de cursos).
+- **Formação Complementar** (lista),
+- **Evolução da Carreira Profissional (Não Educacional)** (timeline).
 
-Demais páginas: `sobre.html`, `formacao.html`, `contato.html`.
+Página `sobre.html` com imagem proporcional (aspect-ratio 1:1 e object-fit: cover).
 
 ## Publicação (GitHub Pages)
 1. Repositório público com estes arquivos.
