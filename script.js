@@ -329,3 +329,11 @@ ${message.value}`;
     }
 
 });
+const honeypot =
+    document.getElementById("website");
+
+if(honeypot.value !== ""){
+
+    return;
+
+}
