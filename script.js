@@ -409,104 +409,6 @@ document.addEventListener(
 /* FORMULÁRIOS */
 /* ===================== */
 
-form{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:.75rem;
-
-}
-
-label{
-
-  font-weight:600;
-
-}
-
-input,
-textarea{
-
-  width:100%;
-
-  padding:.9rem;
-
-  border:1px solid var(--border);
-
-  border-radius:12px;
-
-  background:var(--bg);
-
-  color:var(--text);
-
-  font-family:inherit;
-
-}
-
-input:focus,
-textarea:focus{
-
-  outline:none;
-
-  border-color:var(--primary);
-
-  box-shadow:0 0 0 3px rgba(91,227,122,.2);
-
-}
-
-.error{
-
-  color:#e53935;
-
-  min-height:20px;
-
-}
-
-#successMsg{
-
-  color:var(--primary);
-
-  font-weight:600;
-
-  margin-top:1rem;
-
-}
-.social-links{
-
-  display:flex;
-
-  gap:1rem;
-
-  flex-wrap:wrap;
-
-  margin-top:1rem;
-
-}
-
-.social-links a{
-
-  text-decoration:none;
-
-  color:var(--primary);
-
-  border:1px solid var(--primary);
-
-  padding:.6rem 1rem;
-
-  border-radius:10px;
-
-  transition:.3s;
-
-}
-
-.social-links a:hover{
-
-  background:var(--primary);
-
-  color:#181c1f;
-
-}
 const form =
   document.getElementById("contactForm");
 
@@ -516,33 +418,84 @@ if(form){
 
     e.preventDefault();
 
-    const nome =
-      document.getElementById("name").value;
+    const name =
+      document.getElementById("name");
 
     const email =
-      document.getElementById("email").value;
+      document.getElementById("email");
 
-    const mensagem =
-      document.getElementById("message").value;
+    const message =
+      document.getElementById("message");
+
+    const nameError =
+      document.getElementById("nameError");
+
+    const emailError =
+      document.getElementById("emailError");
+
+    const messageError =
+      document.getElementById("messageError");
+
+    let valid = true;
+
+    nameError.textContent = "";
+    emailError.textContent = "";
+    messageError.textContent = "";
+
+    if(name.value.trim().length < 3){
+
+      nameError.textContent =
+        "Informe um nome válido.";
+
+      valid = false;
+
+    }
+
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailRegex.test(email.value)){
+
+      emailError.textContent =
+        "Informe um e-mail válido.";
+
+      valid = false;
+
+    }
+
+    if(message.value.trim().length < 10){
+
+      messageError.textContent =
+        "A mensagem deve conter ao menos 10 caracteres.";
+
+      valid = false;
+
+    }
+
+    if(!valid){
+
+      return;
+
+    }
 
     const texto =
 
 `Olá Edvaldo!
 
-Nome: ${nome}
+Nome: ${name.value}
 
-E-mail: ${email}
+E-mail: ${email.value}
 
 Mensagem:
-${mensagem}`;
 
-    const whatsapp =
-
-`https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
+${message.value}`;
 
     window.open(
-      whatsapp,
+
+      `https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`,
+
       "_blank"
+
     );
 
   });
