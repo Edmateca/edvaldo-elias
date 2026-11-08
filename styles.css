@@ -1,25 +1,4 @@
-
-/* CSS sem frameworks — responsivo, tema, menu */
-:root { --bg:#fff; --text:#222; --muted:#555; --primary:#2e7d32; --surface:#f5f7fa; }
-body.dark { --bg:#0f1419; --text:#e6e6e6; --muted:#b3b3b3; --primary:#81c784; --surface:#111820; }
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text)}
-.topbar{position:sticky;top:0;z-index:1000;display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;padding:.75rem 1rem;background:var(--surface);border-bottom:1px solid rgba(0,0,0,.08)}
-.brand{font-weight:700} .nav{display:flex;gap:1rem} .nav a{text-decoration:none;color:var(--text);padding:.25rem .5rem;border-radius:6px}
-.nav a:hover{background:rgba(0,0,0,.06)} .theme{background:transparent;border:1px solid rgba(0,0,0,.2);border-radius:6px;padding:.4rem .6rem;cursor:pointer}
-.menu-toggle{display:none}
-.section{padding:4rem 1rem} .section.alt{background:var(--surface)} .container{max-width:1000px;margin:0 auto}
-.grid.two{display:grid;grid-template-columns:280px 1fr;gap:2rem} .grid.three{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-
-/* Perfil: proporção e ajuste */
-.profile-wrap { max-width: 280px; }
-.profile { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0,0,0,0.12); }
-
-.tags{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem} .tags li{background:rgba(46,125,50,.1);color:var(--primary);border:1px solid rgba(46,125,50,.2);padding:.25rem .5rem;border-radius:6px}
-.card{border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:1rem;background:var(--bg)}
-.btn{display:inline-block;text-decoration:none;color:var(--primary);border:1px solid var(--primary);border-radius:8px;padding:.4rem .8rem} .btn.primary{color:#fff;background:var(--primary)}
-.note{color:var(--muted)}
-.timeline{display:grid;gap:1rem} .timeline article{border-left:3px solid var(--primary);padding-left:.75rem}
-.footer{border-top:1px solid rgba(0,0,0,.08);background:var(--surface)} .footer p{margin:0;padding:1rem;text-align:center}
-@media (max-width:800px){.grid.two{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.profile-wrap{max-width:200px}}
-@media (max-width:640px){.menu-toggle{display:inline-block}.nav{display:none}.nav.open{display:flex;flex-direction:column;background:var(--surface);padding:.5rem;border-radius:8px}}
+/* ED MATECA v2 */
+:root{--primary:#5BE37A;--primary-dark:#46c962;--bg:#fff;--surface:#f8faf8;--text:#1d1d1d;--muted:#61707e;--border:#e5e7eb;--shadow:rgba(0,0,0,.08)}
+body.dark{--bg:#181c1f;--surface:#24292e;--text:#f3f4f6;--muted:#c5cad1;--border:rgba(255,255,255,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7} .container{max-width:1200px;margin:auto}.topbar{position:sticky;top:0;display:grid;grid-template-columns:1fr auto auto;gap:1rem;padding:1rem 1.5rem;background:var(--surface);border-bottom:1px solid var(--border)}.brand strong{color:var(--primary)}.nav{display:flex;gap:1rem}.nav a{text-decoration:none;color:var(--text)}.hero,.section{padding:4rem 1rem}.grid.two{display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center}.grid.three{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}.hero-title{font-size:4rem}.hero-subtitle{font-size:1.2rem;color:var(--muted)}.profile{width:100%;border-radius:24px;border:4px solid var(--primary)}.card,.stat{background:var(--bg);padding:1.5rem;border-radius:18px;border:1px solid var(--border);box-shadow:0 10px 25px var(--shadow)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.btn{display:inline-block;padding:.8rem 1.2rem;border:2px solid var(--primary);border-radius:10px;text-decoration:none}.btn.primary{background:var(--primary);color:#111}.alt{background:var(--surface)}.footer{text-align:center;padding:2rem;background:var(--surface)} .menu-toggle{display:none}@media(max-width:900px){.grid.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.menu-toggle{display:block}.nav{display:none}.nav.open{display:flex;flex-direction:column}.grid.three,.stats{grid-template-columns:1fr}.hero-title{font-size:2.5rem}}
