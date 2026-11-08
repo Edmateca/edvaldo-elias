@@ -6,62 +6,56 @@
 (() => {
 
   const body = document.body;
-  const nav = document.querySelector(".nav");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const themeToggle = document.getElementById("themeToggle");
-  const year = document.getElementById("year");
 
-  // ===============================
+  const nav =
+    document.querySelector(".nav");
+
+  const menuToggle =
+    document.querySelector(".menu-toggle");
+
+  const themeToggle =
+    document.getElementById("themeToggle");
+
+  const year =
+    document.getElementById("year");
+
+  // ===================================
   // Ano automático
-  // ===============================
+  // ===================================
 
   if (year) {
-    year.textContent = new Date().getFullYear();
+
+    year.textContent =
+      new Date().getFullYear();
+
   }
 
-  // ===============================
+  // ===================================
   // Menu Mobile
-  // ===============================
+  // ===================================
 
   if (menuToggle && nav) {
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener(
+      "click",
+      () => {
 
-      const isOpen = nav.classList.toggle("open");
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-    });
-
-    document.addEventListener("click", (event) => {
-
-      const clickedInsideMenu =
-        nav.contains(event.target);
-
-      const clickedButton =
-        menuToggle.contains(event.target);
-
-      if (!clickedInsideMenu && !clickedButton) {
-
-        nav.classList.remove("open");
+        const isOpen =
+          nav.classList.toggle("open");
 
         menuToggle.setAttribute(
           "aria-expanded",
-          "false"
+          isOpen
         );
 
       }
-
-    });
+    );
 
   }
 
-  // ===============================
-  // Tema
-  // ===============================
+  // ===================================
+  // Tema Claro / Escuro
+  // ===================================
 
   const savedTheme =
     localStorage.getItem("theme");
@@ -82,14 +76,14 @@
 
         body.classList.toggle("dark");
 
-        const theme =
+        const currentTheme =
           body.classList.contains("dark")
             ? "dark"
             : "light";
 
         localStorage.setItem(
           "theme",
-          theme
+          currentTheme
         );
 
         updateThemeIcon();
@@ -103,382 +97,117 @@
 
     if (!themeToggle) return;
 
-    themeToggle.textContent =
+    themeToggle.innerHTML =
       body.classList.contains("dark")
         ? "☀️"
         : "🌙";
 
   }
 
-  // ===============================
-  // Animação ao rolar
-  // ===============================
+  // ===================================
+  // Formulário WhatsApp
+  // ===================================
 
-  const revealElements =
-    document.querySelectorAll(
-      ".card, .stat, .timeline article"
-    );
+  const form =
+    document.getElementById("contactForm");
 
-  const observer =
-    new IntersectionObserver(
+  if (form) {
 
-      (entries) => {
+    form.addEventListener(
+      "submit",
+      (e) => {
 
-        entries.forEach((entry) => {
+        e.preventDefault();
 
-          if (entry.isIntersecting) {
+        const name =
+          document.getElementById("name");
 
-            entry.target.classList.add("show");
+        const email =
+          document.getElementById("email");
+
+        const message =
+          document.getElementById("message");
+
+        const nameError =
+          document.getElementById("nameError");
+
+        const emailError =
+          document.getElementById("emailError");
+
+        const messageError =
+          document.getElementById("messageError");
+
+        let valid = true;
+
+        if (nameError) nameError.textContent = "";
+        if (emailError) emailError.textContent = "";
+        if (messageError) messageError.textContent = "";
+
+        // Nome
+
+        if (
+          !name.value ||
+          name.value.trim().length < 3
+        ) {
+
+          if (nameError) {
+
+            nameError.textContent =
+              "Informe seu nome completo.";
 
           }
 
-        });
+          valid = false;
 
-      },
+        }
 
-      {
-        threshold: 0.15,
-      }
+        // Email
 
-    );
+        const emailRegex =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  revealElements.forEach((element) => {
+        if (
+          !emailRegex.test(
+            email.value
+          )
+        ) {
 
-    element.classList.add("hidden");
+          if (emailError) {
 
-    observer.observe(element);
+            emailError.textContent =
+              "Informe um e-mail válido.";
 
-  });
-// ====================================
-// FILTROS DA GALERIA
-// ====================================
+          }
 
-const filterButtons =
-  document.querySelectorAll(".filter-btn");
+          valid = false;
 
-const galleryItems =
-  document.querySelectorAll(".gallery-item");
+        }
 
-filterButtons.forEach((button) => {
+        // Mensagem
 
-  button.addEventListener("click", () => {
+        if (
+          !message.value ||
+          message.value.trim().length < 10
+        ) {
 
-    filterButtons.forEach((btn) =>
-      btn.classList.remove("active")
-    );
+          if (messageError) {
 
-    button.classList.add("active");
+            messageError.textContent =
+              "A mensagem deve possuir pelo menos 10 caracteres.";
 
-    const filter =
-      button.dataset.filter;
+          }
 
-    galleryItems.forEach((item) => {
+          valid = false;
 
-      const category =
-        item.dataset.category;
+        }
 
-      if (
-        filter === "all" ||
-        category === filter
-      ) {
+        if (!valid) {
 
-        item.classList.remove("hidden");
+          return;
 
-      } else {
+        }
 
-        item.classList.add("hidden");
-
-      }
-
-    });
-
-  });
-
-});
-})();
-// ====================================
-// LIGHTBOX AVANÇADO
-// ====================================
-
-const lightbox =
-  document.getElementById("lightbox");
-
-const lightboxImage =
-  document.getElementById("lightboxImage");
-
-const lightboxCaption =
-  document.getElementById("lightboxCaption");
-
-const closeBtn =
-  document.querySelector(".lightbox-close");
-
-const prevBtn =
-  document.querySelector(".lightbox-prev");
-
-const nextBtn =
-  document.querySelector(".lightbox-next");
-
-const images =
-  [...document.querySelectorAll(".gallery-image")];
-
-let currentIndex = 0;
-
-// =========================
-// Abrir
-// =========================
-
-function openLightbox(index) {
-
-  currentIndex = index;
-
-  const image = images[index];
-
-  lightboxImage.src =
-    image.src;
-
-  lightboxImage.alt =
-    image.alt;
-
-  lightboxCaption.innerHTML = `
-
-    <strong>${image.alt}</strong>
-
-  `;
-
-  lightbox.classList.add("show");
-
-  lightbox.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-  closeBtn.focus();
-
-}
-
-// =========================
-// Atualizar
-// =========================
-
-function updateLightbox() {
-
-  const image =
-    images[currentIndex];
-
-  lightboxImage.src =
-    image.src;
-
-  lightboxImage.alt =
-    image.alt;
-
-  lightboxCaption.innerHTML = `
-
-    <strong>${image.alt}</strong>
-
-  `;
-
-}
-
-// =========================
-// Fechar
-// =========================
-
-function closeLightbox() {
-
-  lightbox.classList.remove(
-    "show"
-  );
-
-  lightbox.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-}
-
-// =========================
-// Próxima
-// =========================
-
-function nextImage() {
-
-  currentIndex++;
-
-  if (currentIndex >= images.length) {
-
-    currentIndex = 0;
-
-  }
-
-  updateLightbox();
-
-}
-
-// =========================
-// Anterior
-// =========================
-
-function prevImage() {
-
-  currentIndex--;
-
-  if (currentIndex < 0) {
-
-    currentIndex =
-      images.length - 1;
-
-  }
-
-  updateLightbox();
-
-}
-
-// =========================
-// Eventos
-// =========================
-
-images.forEach((image,index) => {
-
-  image.addEventListener(
-    "click",
-    () => openLightbox(index)
-  );
-
-});
-
-closeBtn?.addEventListener(
-  "click",
-  closeLightbox
-);
-
-nextBtn?.addEventListener(
-  "click",
-  nextImage
-);
-
-prevBtn?.addEventListener(
-  "click",
-  prevImage
-);
-
-lightbox?.addEventListener(
-  "click",
-  (event) => {
-
-    if (event.target === lightbox) {
-
-      closeLightbox();
-
-    }
-
-  }
-);
-
-// =========================
-// Teclado
-// =========================
-
-document.addEventListener(
-  "keydown",
-  (event) => {
-
-    if (
-      !lightbox.classList.contains("show")
-    ) return;
-
-    switch(event.key){
-
-      case "Escape":
-        closeLightbox();
-        break;
-
-      case "ArrowRight":
-        nextImage();
-        break;
-
-      case "ArrowLeft":
-        prevImage();
-        break;
-
-    }
-
-  }
-);
-});
-/* ===================== */
-/* FORMULÁRIOS */
-/* ===================== */
-
-const form =
-  document.getElementById("contactForm");
-
-if(form){
-
-  form.addEventListener("submit",(e)=>{
-
-    e.preventDefault();
-
-    const name =
-      document.getElementById("name");
-
-    const email =
-      document.getElementById("email");
-
-    const message =
-      document.getElementById("message");
-
-    const nameError =
-      document.getElementById("nameError");
-
-    const emailError =
-      document.getElementById("emailError");
-
-    const messageError =
-      document.getElementById("messageError");
-
-    let valid = true;
-
-    nameError.textContent = "";
-    emailError.textContent = "";
-    messageError.textContent = "";
-
-    if(name.value.trim().length < 3){
-
-      nameError.textContent =
-        "Informe um nome válido.";
-
-      valid = false;
-
-    }
-
-    const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!emailRegex.test(email.value)){
-
-      emailError.textContent =
-        "Informe um e-mail válido.";
-
-      valid = false;
-
-    }
-
-    if(message.value.trim().length < 10){
-
-      messageError.textContent =
-        "A mensagem deve conter ao menos 10 caracteres.";
-
-      valid = false;
-
-    }
-
-    if(!valid){
-
-      return;
-
-    }
-
-    const texto =
+        const texto =
 
 `Olá Edvaldo!
 
@@ -487,17 +216,21 @@ Nome: ${name.value}
 E-mail: ${email.value}
 
 Mensagem:
-
 ${message.value}`;
 
-    window.open(
+        const whatsappURL =
 
-      `https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`,
+`https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
 
-      "_blank"
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+      }
 
     );
 
-  });
+  }
 
-}
+})();
