@@ -5,283 +5,300 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const body = document.body;
+    // ==========================================
+    // ANO AUTOMÁTICO
+    // ==========================================
 
-  // =====================================
-  // ANO AUTOMÁTICO
-  // =====================================
+    const year =
+        document.getElementById("year");
 
-  const year = document.getElementById("year");
+    if (year) {
 
-  if (year) {
+        year.textContent =
+            new Date().getFullYear();
 
-    year.textContent =
-      new Date().getFullYear();
+    }
 
-  }
+    // ==========================================
+    // MENU RESPONSIVO
+    // ==========================================
 
-  // =====================================
-  // MENU MOBILE
-  // =====================================
+    const menuButton =
+        document.querySelector(".menu-toggle");
 
-  const menuToggle =
-    document.querySelector(".menu-toggle");
+    const nav =
+        document.querySelector(".nav");
 
-  const nav =
-    document.querySelector(".nav");
+    if (menuButton && nav) {
 
-  if (menuToggle && nav) {
+        menuButton.addEventListener(
+            "click",
+            () => {
 
-    menuToggle.addEventListener(
-      "click",
-      () => {
+                nav.classList.toggle("open");
 
-        nav.classList.toggle("open");
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    nav.classList.contains("open")
+                );
 
-        const expanded =
-          nav.classList.contains("open");
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          expanded
+            }
         );
 
-      }
-    );
+    }
 
-  }
+    // ==========================================
+    // TEMA ESCURO
+    // ==========================================
 
-  // =====================================
-  // TEMA ESCURO
-  // =====================================
+    const themeToggle =
+        document.getElementById("themeToggle");
 
-  const themeToggle =
-    document.getElementById("themeToggle");
+    const savedTheme =
+        localStorage.getItem("theme");
 
-  const savedTheme =
-    localStorage.getItem("theme");
+    if (savedTheme === "dark") {
 
-  if (savedTheme === "dark") {
-
-    body.classList.add("dark");
-
-  }
-
-  updateThemeIcon();
-
-  function updateThemeIcon() {
-
-    if (!themeToggle) return;
-
-    themeToggle.innerHTML =
-
-      body.classList.contains("dark")
-        ? "☀️"
-        : "🌙";
-
-  }
-
-  if (themeToggle) {
-
-    themeToggle.addEventListener(
-      "click",
-      () => {
-
-        body.classList.toggle("dark");
-
-        const theme =
-
-          body.classList.contains("dark")
-            ? "dark"
-            : "light";
-
-        localStorage.setItem(
-          "theme",
-          theme
+        document.body.classList.add(
+            "dark"
         );
 
-        updateThemeIcon();
+    }
 
-      }
-    );
+    updateThemeIcon();
 
-  }
+    if (themeToggle) {
 
-  // =====================================
-  // ANIMAÇÕES AO ROLAR
-  // =====================================
+        themeToggle.addEventListener(
+            "click",
+            () => {
 
-  const observer =
+                document.body.classList.toggle(
+                    "dark"
+                );
 
-    new IntersectionObserver(
+                const currentTheme =
 
-      entries => {
+                    document.body.classList.contains(
+                        "dark"
+                    )
+                        ? "dark"
+                        : "light";
 
-        entries.forEach(entry => {
+                localStorage.setItem(
+                    "theme",
+                    currentTheme
+                );
 
-          if (entry.isIntersecting) {
+                updateThemeIcon();
 
-            entry.target.classList.add(
-              "visible"
-            );
+            }
+        );
 
-          }
+    }
 
-        });
+    function updateThemeIcon() {
 
-      },
+        if (!themeToggle) return;
 
-      {
-        threshold: 0.1
-      }
+        themeToggle.textContent =
 
-    );
+            document.body.classList.contains(
+                "dark"
+            )
+                ? "☀️"
+                : "🌙";
 
-  document
-    .querySelectorAll(
-      ".card, .stat, .timeline article"
-    )
-    .forEach(el => {
+    }
 
-      el.classList.add(
-        "reveal"
-      );
+    // ==========================================
+    // FORMULÁRIO WHATSAPP
+    // ==========================================
 
-      observer.observe(el);
+    const form =
+        document.getElementById("contactForm");
 
-    });
+    if (form) {
 
-  // =====================================
-  // FORMULÁRIO
-  // =====================================
+        form.addEventListener(
+            "submit",
+            (event) => {
 
-  const form =
-    document.getElementById("contactForm");
+                event.preventDefault();
 
-  if (form) {
+                const name =
+                    document.getElementById(
+                        "name"
+                    );
 
-    form.addEventListener(
-      "submit",
-      event => {
+                const email =
+                    document.getElementById(
+                        "email"
+                    );
 
-        event.preventDefault();
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
 
-        const name =
-          document.getElementById("name");
+                const nameError =
+                    document.getElementById(
+                        "nameError"
+                    );
 
-        const email =
-          document.getElementById("email");
+                const emailError =
+                    document.getElementById(
+                        "emailError"
+                    );
 
-        const message =
-          document.getElementById("message");
+                const messageError =
+                    document.getElementById(
+                        "messageError"
+                    );
 
-        const nameError =
-          document.getElementById("nameError");
+                let valid = true;
 
-        const emailError =
-          document.getElementById("emailError");
+                // ==========================
+                // LIMPA ERROS
+                // ==========================
 
-        const messageError =
-          document.getElementById("messageError");
+                [nameError,
+                 emailError,
+                 messageError]
+                .forEach(field => {
 
-        let valid = true;
+                    if (field) {
 
-        if (nameError)
-          nameError.textContent = "";
+                        field.textContent = "";
 
-        if (emailError)
-          emailError.textContent = "";
+                    }
 
-        if (messageError)
-          messageError.textContent = "";
+                });
 
-        [
-          name,
-          email,
-          message
-        ].forEach(field => {
+                [name,
+                 email,
+                 message]
+                .forEach(field => {
 
-          field.classList.remove(
-            "valid",
-            "invalid"
-          );
+                    field.classList.remove(
+                        "valid",
+                        "invalid"
+                    );
 
-        });
+                });
 
-        if (
-          !name.value ||
-          name.value.trim().length < 3
-        ) {
+                // ==========================
+                // NOME
+                // ==========================
 
-          name.classList.add("invalid");
+                if (
+                    name.value.trim().length < 3
+                ) {
 
-          if (nameError) {
+                    name.classList.add(
+                        "invalid"
+                    );
 
-            nameError.textContent =
-              "Informe seu nome completo.";
+                    if (nameError) {
 
-          }
+                        nameError.textContent =
 
-          valid = false;
+                            "Informe seu nome completo.";
 
-        } else {
+                    }
 
-          name.classList.add("valid");
+                    valid = false;
 
-        }
+                } else {
 
-        const emailRegex =
+                    name.classList.add(
+                        "valid"
+                    );
 
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                }
 
-        if (
-          !emailRegex.test(
-            email.value
-          )
-        ) {
+                // ==========================
+                // EMAIL
+                // ==========================
 
-          email.classList.add("invalid");
+                const emailRegex =
 
-          if (emailError) {
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            emailError.textContent =
-              "Informe um e-mail válido.";
+                if (
+                    !emailRegex.test(
+                        email.value
+                    )
+                ) {
 
-          }
+                    email.classList.add(
+                        "invalid"
+                    );
 
-          valid = false;
+                    if (emailError) {
 
-        } else {
+                        emailError.textContent =
 
-          email.classList.add("valid");
+                            "Informe um e-mail válido.";
 
-        }
+                    }
 
-        if (
-          !message.value ||
-          message.value.trim().length < 10
-        ) {
+                    valid = false;
 
-          message.classList.add("invalid");
+                } else {
 
-          if (messageError) {
+                    email.classList.add(
+                        "valid"
+                    );
 
-            messageError.textContent =
-              "Mensagem muito curta.";
+                }
 
-          }
+                // ==========================
+                // MENSAGEM
+                // ==========================
 
-          valid = false;
+                if (
+                    message.value.trim()
+                        .length < 10
+                ) {
 
-        } else {
+                    message.classList.add(
+                        "invalid"
+                    );
 
-          message.classList.add("valid");
+                    if (messageError) {
 
-        }
+                        messageError.textContent =
 
-        if (!valid) return;
+                            "A mensagem deve possuir pelo menos 10 caracteres.";
 
-        const text =
+                    }
+
+                    valid = false;
+
+                } else {
+
+                    message.classList.add(
+                        "valid"
+                    );
+
+                }
+
+                // ==========================
+                // BLOQUEIA ENVIO
+                // ==========================
+
+                if (!valid) {
+
+                    return;
+
+                }
+
+                // ==========================
+                // GERA TEXTO
+                // ==========================
+
+                const texto =
 
 `Olá Edvaldo!
 
@@ -293,262 +310,22 @@ Mensagem:
 
 ${message.value}`;
 
-        const url =
+                // ==========================
+                // WHATSAPP
+                // ==========================
 
-`https://wa.me/5519989487960?text=${encodeURIComponent(text)}`;
+                const whatsappURL =
 
-        window.open(
-          url,
-          "_blank"
+`https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
+
+                window.open(
+                    whatsappURL,
+                    "_blank"
+                );
+
+            }
         );
 
-      }
-    );
-
-  }
-
-  // =====================================
-  // FILTROS GALERIA
-  // =====================================
-
-  const filters =
-
-    document.querySelectorAll(
-      ".filter-btn"
-    );
-
-  const galleryItems =
-
-    document.querySelectorAll(
-      ".gallery-item"
-    );
-
-  filters.forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        filters.forEach(btn =>
-
-          btn.classList.remove(
-            "active"
-          )
-
-        );
-
-        button.classList.add(
-          "active"
-        );
-
-        const filter =
-
-          button.dataset.filter;
-
-        galleryItems.forEach(item => {
-
-          const category =
-
-            item.dataset.category;
-
-          if (
-            filter === "all" ||
-            category === filter
-          ) {
-
-            item.style.display =
-              "block";
-
-          } else {
-
-            item.style.display =
-              "none";
-
-          }
-
-        });
-
-      }
-    );
-
-  });
-
-  // =====================================
-  // LIGHTBOX
-  // =====================================
-
-  const lightbox =
-    document.getElementById(
-      "lightbox"
-    );
-
-  const lightboxImage =
-    document.getElementById(
-      "lightboxImage"
-    );
-
-  const lightboxCaption =
-    document.getElementById(
-      "lightboxCaption"
-    );
-
-  const images =
-
-    [
-      ...document.querySelectorAll(
-        ".gallery-image"
-      )
-    ];
-
-  let currentIndex = 0;
-
-  function updateLightbox() {
-
-    const image =
-
-      images[currentIndex];
-
-    lightboxImage.src =
-      image.src;
-
-    lightboxImage.alt =
-      image.alt;
-
-    if (lightboxCaption) {
-
-      lightboxCaption.innerHTML =
-
-        `<strong>${image.alt}</strong><br>
-         ${image.dataset.caption || ""}`;
-
     }
-
-  }
-
-  function openLightbox(index) {
-
-    currentIndex = index;
-
-    updateLightbox();
-
-    lightbox?.classList.add("show");
-
-  }
-
-  function closeLightbox() {
-
-    lightbox?.classList.remove(
-      "show"
-    );
-
-  }
-
-  function nextImage() {
-
-    currentIndex++;
-
-    if (
-      currentIndex >= images.length
-    ) {
-
-      currentIndex = 0;
-
-    }
-
-    updateLightbox();
-
-  }
-
-  function prevImage() {
-
-    currentIndex--;
-
-    if (
-      currentIndex < 0
-    ) {
-
-      currentIndex =
-        images.length - 1;
-
-    }
-
-    updateLightbox();
-
-  }
-
-  images.forEach(
-    (image,index) => {
-
-      image.addEventListener(
-        "click",
-        () => {
-
-          openLightbox(index);
-
-        }
-      );
-
-    }
-  );
-
-  document
-    .querySelector(".lightbox-close")
-    ?.addEventListener(
-      "click",
-      closeLightbox
-    );
-
-  document
-    .querySelector(".lightbox-next")
-    ?.addEventListener(
-      "click",
-      nextImage
-    );
-
-  document
-    .querySelector(".lightbox-prev")
-    ?.addEventListener(
-      "click",
-      prevImage
-    );
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        !lightbox?.classList.contains(
-          "show"
-        )
-      ) return;
-
-      if (
-        event.key === "Escape"
-      ) {
-
-        closeLightbox();
-
-      }
-
-      if (
-        event.key ===
-        "ArrowRight"
-      ) {
-
-        nextImage();
-
-      }
-
-      if (
-        event.key ===
-        "ArrowLeft"
-      ) {
-
-        prevImage();
-
-      }
-
-    }
-  );
 
 });
