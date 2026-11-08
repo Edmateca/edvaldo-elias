@@ -379,3 +379,26 @@ body{
   }
 
 }
+.valid{
+
+    border:2px solid #4CAF50 !important;
+
+}
+
+.invalid{
+
+    border:2px solid #F44336 !important;
+
+}
+
+.error{
+
+    color:#F44336;
+
+    font-size:.9rem;
+
+    margin-top:.25rem;
+
+    min-height:20px;
+
+}
