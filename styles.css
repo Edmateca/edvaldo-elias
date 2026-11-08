@@ -522,9 +522,9 @@ button:focus {
   }
 
 }
-/* ======================= */
+/* ================================= */
 /* REDES SOCIAIS */
-/* ======================= */
+/* ================================= */
 
 .social-links{
 
@@ -540,17 +540,25 @@ button:focus {
 
 .social-links a{
 
-  text-decoration:none;
+  display:flex;
 
-  border:1px solid var(--primary);
+  align-items:center;
+
+  gap:.65rem;
+
+  text-decoration:none;
 
   color:var(--primary);
 
-  padding:.7rem 1rem;
+  border:1px solid var(--primary);
 
-  border-radius:10px;
+  padding:.8rem 1rem;
+
+  border-radius:12px;
 
   transition:.3s;
+
+  font-weight:500;
 
 }
 
@@ -560,8 +568,23 @@ button:focus {
 
   color:#181c1f;
 
+  transform:translateY(-2px);
+
 }
 
+.social-links i{
+
+  font-size:1.1rem;
+
+}
+
+.social-links a:focus{
+
+  outline:3px solid var(--primary);
+
+  outline-offset:3px;
+
+}
 /* ======================= */
 /* WHATSAPP */
 /* ======================= */
