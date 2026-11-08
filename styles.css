@@ -888,3 +888,42 @@ textarea{
   color:var(--text);
 
 }
+/* ================================= */
+/* VALIDAÇÃO VISUAL */
+/* ================================= */
+
+input.valid,
+textarea.valid{
+
+  border:2px solid var(--success);
+
+}
+
+input.invalid,
+textarea.invalid{
+
+  border:2px solid var(--error);
+
+}
+
+.error{
+
+  min-height:20px;
+
+  color:var(--error);
+
+  font-size:.9rem;
+
+  margin-top:.4rem;
+
+}
+
+.success-message{
+
+  color:var(--success);
+
+  margin-top:1rem;
+
+  font-weight:600;
+
+}
