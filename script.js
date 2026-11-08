@@ -472,3 +472,38 @@ textarea:focus{
   margin-top:1rem;
 
 }
+.social-links{
+
+  display:flex;
+
+  gap:1rem;
+
+  flex-wrap:wrap;
+
+  margin-top:1rem;
+
+}
+
+.social-links a{
+
+  text-decoration:none;
+
+  color:var(--primary);
+
+  border:1px solid var(--primary);
+
+  padding:.6rem 1rem;
+
+  border-radius:10px;
+
+  transition:.3s;
+
+}
+
+.social-links a:hover{
+
+  background:var(--primary);
+
+  color:#181c1f;
+
+}
