@@ -761,3 +761,55 @@ textarea:focus{
   margin-right:.5rem;
 
 }
+/* ===================== */
+/* MODO ESCURO */
+/* ===================== */
+
+:root{
+
+  --primary:#5BE37A;
+  --primary-dark:#46C962;
+
+  --bg:#ffffff;
+  --surface:#f8faf8;
+
+  --text:#1d1d1d;
+  --muted:#61707e;
+
+  --border:#dfe3e8;
+
+}
+
+body.dark{
+
+  --bg:#181C1F;
+
+  --surface:#24292E;
+
+  --text:#F3F4F6;
+
+  --muted:#BFC6CC;
+
+  --border:#3A4047;
+
+}
+
+body{
+
+  background:var(--bg);
+  color:var(--text);
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+.card,
+.topbar,
+.footer{
+
+  background:var(--surface);
+
+  transition:background .3s ease;
+
+}
