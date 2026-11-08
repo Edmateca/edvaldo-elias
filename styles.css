@@ -813,3 +813,78 @@ body{
   transition:background .3s ease;
 
 }
+/* ================================= */
+/* TEMA */
+/* ================================= */
+
+:root{
+
+  --primary:#5BE37A;
+  --primary-dark:#46C962;
+
+  --bg:#FFFFFF;
+  --surface:#F7FAF8;
+
+  --card:#FFFFFF;
+
+  --text:#1D1D1D;
+  --muted:#61707E;
+
+  --border:#DFE3E8;
+
+  --success:#2E7D32;
+  --error:#D32F2F;
+
+}
+
+body.dark{
+
+  --bg:#181C1F;
+
+  --surface:#24292E;
+
+  --card:#2D333B;
+
+  --text:#F3F4F6;
+
+  --muted:#BFC6CC;
+
+  --border:#3A4047;
+
+  --success:#81C784;
+  --error:#EF5350;
+
+}
+
+body{
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+
+}
+
+.card,
+.topbar,
+.footer{
+
+  background:var(--card);
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+
+}
+
+input,
+textarea{
+
+  background:var(--bg);
+
+  color:var(--text);
+
+}
