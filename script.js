@@ -405,3 +405,70 @@ document.addEventListener(
   }
 );
 });
+/* ===================== */
+/* FORMULÁRIOS */
+/* ===================== */
+
+form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:.75rem;
+
+}
+
+label{
+
+  font-weight:600;
+
+}
+
+input,
+textarea{
+
+  width:100%;
+
+  padding:.9rem;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  font-family:inherit;
+
+}
+
+input:focus,
+textarea:focus{
+
+  outline:none;
+
+  border-color:var(--primary);
+
+  box-shadow:0 0 0 3px rgba(91,227,122,.2);
+
+}
+
+.error{
+
+  color:#e53935;
+
+  min-height:20px;
+
+}
+
+#successMsg{
+
+  color:var(--primary);
+
+  font-weight:600;
+
+  margin-top:1rem;
+
+}
