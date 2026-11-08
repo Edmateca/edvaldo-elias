@@ -6,6 +6,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // ==========================================
+    // TEMPO MÍNIMO DE PREENCHIMENTO
+    // ==========================================
+
+    const formStartTime = Date.now();
+
+    // ==========================================
     // ANO AUTOMÁTICO
     // ==========================================
 
@@ -141,6 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         "message"
                     );
 
+                const honeypot =
+                    document.getElementById(
+                        "website"
+                    );
+
                 const nameError =
                     document.getElementById(
                         "nameError"
@@ -159,13 +170,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 let valid = true;
 
                 // ==========================
+                // HONEYPOT ANTI-SPAM
+                // ==========================
+
+                if (
+                    honeypot &&
+                    honeypot.value !== ""
+                ) {
+
+                    return;
+
+                }
+
+                // ==========================
                 // LIMPA ERROS
                 // ==========================
 
-                [nameError,
-                 emailError,
-                 messageError]
-                .forEach(field => {
+                [
+                    nameError,
+                    emailError,
+                    messageError
+                ].forEach(field => {
 
                     if (field) {
 
@@ -175,10 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 });
 
-                [name,
-                 email,
-                 message]
-                .forEach(field => {
+                [
+                    name,
+                    email,
+                    message
+                ].forEach(field => {
 
                     field.classList.remove(
                         "valid",
@@ -202,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (nameError) {
 
                         nameError.textContent =
-
                             "Informe seu nome completo.";
 
                     }
@@ -222,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // ==========================
 
                 const emailRegex =
-
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 if (
@@ -238,7 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (emailError) {
 
                         emailError.textContent =
-
                             "Informe um e-mail válido.";
 
                     }
@@ -258,8 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // ==========================
 
                 if (
-                    message.value.trim()
-                        .length < 10
+                    message.value.trim().length < 10
                 ) {
 
                     message.classList.add(
@@ -269,7 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (messageError) {
 
                         messageError.textContent =
-
                             "A mensagem deve possuir pelo menos 10 caracteres.";
 
                     }
@@ -284,10 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 }
 
-                // ==========================
-                // BLOQUEIA ENVIO
-                // ==========================
-
                 if (!valid) {
 
                     return;
@@ -295,7 +312,77 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 // ==========================
-                // GERA TEXTO
+                // TEMPO MÍNIMO
+                // ==========================
+
+                const elapsedTime =
+                    (Date.now() - formStartTime) / 1000;
+
+                if (elapsedTime < 5) {
+
+                    alert(
+                        "Aguarde alguns segundos antes de enviar."
+                    );
+
+                    return;
+
+                }
+
+                // ==========================
+                // BLOQUEIO DE LINKS
+                // ==========================
+
+                const suspiciousLinks =
+                    /(http|https|www\.)/gi;
+
+                if (
+                    suspiciousLinks.test(
+                        message.value
+                    )
+                ) {
+
+                    alert(
+                        "Links não são permitidos na mensagem."
+                    );
+
+                    return;
+
+                }
+
+                // ==========================
+                // CONTROLE DE FREQUÊNCIA
+                // ==========================
+
+                const lastSubmit =
+                    localStorage.getItem(
+                        "lastContactSubmit"
+                    );
+
+                if (lastSubmit) {
+
+                    const difference =
+                        Date.now() -
+                        Number(lastSubmit);
+
+                    if (difference < 60000) {
+
+                        alert(
+                            "Aguarde 1 minuto antes de enviar outra mensagem."
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+                localStorage.setItem(
+                    "lastContactSubmit",
+                    Date.now()
+                );
+
+                // ==========================
+                // MONTA MENSAGEM
                 // ==========================
 
                 const texto =
@@ -329,11 +416,3 @@ ${message.value}`;
     }
 
 });
-const honeypot =
-    document.getElementById("website");
-
-if(honeypot.value !== ""){
-
-    return;
-
-}
