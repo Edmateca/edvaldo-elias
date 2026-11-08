@@ -507,3 +507,44 @@ textarea:focus{
   color:#181c1f;
 
 }
+const form =
+  document.getElementById("contactForm");
+
+if(form){
+
+  form.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const nome =
+      document.getElementById("name").value;
+
+    const email =
+      document.getElementById("email").value;
+
+    const mensagem =
+      document.getElementById("message").value;
+
+    const texto =
+
+`Olá Edvaldo!
+
+Nome: ${nome}
+
+E-mail: ${email}
+
+Mensagem:
+${mensagem}`;
+
+    const whatsapp =
+
+`https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
+
+    window.open(
+      whatsapp,
+      "_blank"
+    );
+
+  });
+
+}
