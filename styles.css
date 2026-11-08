@@ -522,3 +522,97 @@ button:focus {
   }
 
 }
+/* ======================= */
+/* REDES SOCIAIS */
+/* ======================= */
+
+.social-links{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:.75rem;
+
+  margin-top:1rem;
+
+}
+
+.social-links a{
+
+  text-decoration:none;
+
+  border:1px solid var(--primary);
+
+  color:var(--primary);
+
+  padding:.7rem 1rem;
+
+  border-radius:10px;
+
+  transition:.3s;
+
+}
+
+.social-links a:hover{
+
+  background:var(--primary);
+
+  color:#181c1f;
+
+}
+
+/* ======================= */
+/* WHATSAPP */
+/* ======================= */
+
+.whatsapp-float{
+
+  position:fixed;
+
+  right:25px;
+
+  bottom:25px;
+
+  width:65px;
+
+  height:65px;
+
+  background:#25D366;
+
+  color:white;
+
+  border-radius:50%;
+
+  text-decoration:none;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:30px;
+
+  z-index:9999;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.25);
+
+  transition:.3s;
+
+}
+
+.whatsapp-float:hover{
+
+  transform:scale(1.1);
+
+}
+
+.whatsapp-float:focus{
+
+  outline:3px solid white;
+
+  outline-offset:4px;
+
+}
