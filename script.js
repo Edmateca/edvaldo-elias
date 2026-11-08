@@ -108,106 +108,103 @@
   // Formulário WhatsApp
   // ===================================
 
-  const form =
-    document.getElementById("contactForm");
+ const form =
+  document.getElementById("contactForm");
 
-  if (form) {
+if(form){
 
-    form.addEventListener(
-      "submit",
-      (e) => {
+  form.addEventListener("submit",(e)=>{
 
-        e.preventDefault();
+    e.preventDefault();
 
-        const name =
-          document.getElementById("name");
+    const name =
+      document.getElementById("name");
 
-        const email =
-          document.getElementById("email");
+    const email =
+      document.getElementById("email");
 
-        const message =
-          document.getElementById("message");
+    const message =
+      document.getElementById("message");
 
-        const nameError =
-          document.getElementById("nameError");
+    const nameError =
+      document.getElementById("nameError");
 
-        const emailError =
-          document.getElementById("emailError");
+    const emailError =
+      document.getElementById("emailError");
 
-        const messageError =
-          document.getElementById("messageError");
+    const messageError =
+      document.getElementById("messageError");
 
-        let valid = true;
+    let valid = true;
 
-        if (nameError) nameError.textContent = "";
-        if (emailError) emailError.textContent = "";
-        if (messageError) messageError.textContent = "";
+    nameError.textContent="";
+    emailError.textContent="";
+    messageError.textContent="";
 
-        // Nome
+    [name,email,message].forEach(field=>{
 
-        if (
-          !name.value ||
-          name.value.trim().length < 3
-        ) {
+      field.classList.remove(
+        "valid",
+        "invalid"
+      );
 
-          if (nameError) {
+    });
 
-            nameError.textContent =
-              "Informe seu nome completo.";
+    if(name.value.trim().length < 3){
 
-          }
+      nameError.textContent =
+        "Informe seu nome completo.";
 
-          valid = false;
+      name.classList.add("invalid");
 
-        }
+      valid = false;
 
-        // Email
+    }else{
 
-        const emailRegex =
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      name.classList.add("valid");
 
-        if (
-          !emailRegex.test(
-            email.value
-          )
-        ) {
+    }
 
-          if (emailError) {
+    const emailRegex =
+      /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
 
-            emailError.textContent =
-              "Informe um e-mail válido.";
+    if(!emailRegex.test(email.value)){
 
-          }
+      emailError.textContent =
+        "Informe um e-mail válido.";
 
-          valid = false;
+      email.classList.add("invalid");
 
-        }
+      valid = false;
 
-        // Mensagem
+    }else{
 
-        if (
-          !message.value ||
-          message.value.trim().length < 10
-        ) {
+      email.classList.add("valid");
 
-          if (messageError) {
+    }
 
-            messageError.textContent =
-              "A mensagem deve possuir pelo menos 10 caracteres.";
+    if(message.value.trim().length < 10){
 
-          }
+      messageError.textContent =
+        "A mensagem deve conter ao menos 10 caracteres.";
 
-          valid = false;
+      message.classList.add("invalid");
 
-        }
+      valid = false;
 
-        if (!valid) {
+    }else{
 
-          return;
+      message.classList.add("valid");
 
-        }
+    }
 
-        const texto =
+    if(!valid){
+
+      return;
+
+    }
+
+    const texto =
 
 `Olá Edvaldo!
 
@@ -216,21 +213,18 @@ Nome: ${name.value}
 E-mail: ${email.value}
 
 Mensagem:
+
 ${message.value}`;
 
-        const whatsappURL =
+    const whatsappURL =
 
 `https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
 
-        window.open(
-          whatsappURL,
-          "_blank"
-        );
-
-      }
-
+    window.open(
+      whatsappURL,
+      "_blank"
     );
 
-  }
+  });
 
-})();
+}
