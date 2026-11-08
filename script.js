@@ -228,3 +228,121 @@ ${message.value}`;
   });
 
 }
+// =====================================
+// FORMULÁRIO WHATSAPP
+// =====================================
+
+const form =
+  document.getElementById("contactForm");
+
+if(form){
+
+  form.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    const name =
+      document.getElementById("name");
+
+    const email =
+      document.getElementById("email");
+
+    const message =
+      document.getElementById("message");
+
+    let valid = true;
+
+    document
+      .querySelectorAll(".error")
+      .forEach(el => el.textContent = "");
+
+    [name,email,message]
+      .forEach(el => {
+
+        el.classList.remove(
+          "valid",
+          "invalid"
+        );
+
+      });
+
+    if(name.value.trim().length < 3){
+
+      document.getElementById(
+        "nameError"
+      ).textContent =
+      "Informe seu nome.";
+
+      name.classList.add("invalid");
+
+      valid = false;
+
+    }else{
+
+      name.classList.add("valid");
+
+    }
+
+    const emailRegex =
+      /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+    if(!emailRegex.test(email.value)){
+
+      document.getElementById(
+        "emailError"
+      ).textContent =
+      "E-mail inválido.";
+
+      email.classList.add("invalid");
+
+      valid = false;
+
+    }else{
+
+      email.classList.add("valid");
+
+    }
+
+    if(message.value.trim().length < 10){
+
+      document.getElementById(
+        "messageError"
+      ).textContent =
+      "Digite uma mensagem.";
+
+      message.classList.add("invalid");
+
+      valid = false;
+
+    }else{
+
+      message.classList.add("valid");
+
+    }
+
+    if(!valid) return;
+
+    const texto =
+
+`Olá Edvaldo!
+
+Nome: ${name.value}
+
+E-mail: ${email.value}
+
+Mensagem:
+
+${message.value}`;
+
+    const url =
+
+`https://wa.me/5519989487960?text=${encodeURIComponent(texto)}`;
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  });
+
+}
