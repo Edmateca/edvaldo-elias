@@ -38,3 +38,23 @@
   transform: translateY(-6px);
 
 }
+/* ================================= */
+/* ACESSIBILIDADE */
+/* ================================= */
+
+a:focus,
+button:focus {
+
+  outline: 3px solid var(--primary);
+
+  outline-offset: 3px;
+
+}
+
+.btn:focus {
+
+  outline: 3px solid var(--primary);
+
+  outline-offset: 4px;
+
+}
