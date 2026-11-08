@@ -273,3 +273,74 @@ button:focus {
   display:none;
 
 }
+/* ================================= */
+/* LIGHTBOX */
+/* ================================= */
+
+.lightbox{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.9);
+
+  z-index:9999;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:20px;
+
+}
+
+.lightbox.show{
+
+  display:flex;
+
+  animation:fadeIn .3s ease;
+
+}
+
+.lightbox-image{
+
+  max-width:90%;
+
+  max-height:90vh;
+
+  border-radius:12px;
+
+}
+
+.lightbox-close{
+
+  position:absolute;
+
+  top:20px;
+
+  right:30px;
+
+  color:white;
+
+  font-size:40px;
+
+  cursor:pointer;
+
+}
+
+.gallery-image{
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.gallery-image:hover{
+
+  transform:scale(1.03);
+
+}
