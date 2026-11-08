@@ -616,3 +616,44 @@ button:focus {
   outline-offset:4px;
 
 }
+.social-links{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:.75rem;
+
+  margin-top:1rem;
+
+}
+
+.social-links a{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:.5rem;
+
+  text-decoration:none;
+
+  color:var(--primary);
+
+  border:1px solid var(--primary);
+
+  padding:.75rem 1rem;
+
+  border-radius:12px;
+
+  transition:.3s;
+
+}
+
+.social-links a:hover{
+
+  background:var(--primary);
+
+  color:#181c1f;
+
+}
