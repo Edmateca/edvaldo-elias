@@ -196,3 +196,66 @@ filterButtons.forEach((button) => {
 
 });
 })();
+// ====================================
+// LIGHTBOX
+// ====================================
+
+const lightbox =
+  document.getElementById("lightbox");
+
+const lightboxImage =
+  document.getElementById("lightboxImage");
+
+const galleryImages =
+  document.querySelectorAll(".gallery-image");
+
+const lightboxClose =
+  document.querySelector(".lightbox-close");
+
+galleryImages.forEach((image) => {
+
+  image.addEventListener("click", () => {
+
+    lightboxImage.src = image.src;
+
+    lightboxImage.alt = image.alt;
+
+    lightbox.classList.add("show");
+
+  });
+
+});
+
+if (lightboxClose) {
+
+  lightboxClose.addEventListener("click", () => {
+
+    lightbox.classList.remove("show");
+
+  });
+
+}
+
+if (lightbox) {
+
+  lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+
+      lightbox.classList.remove("show");
+
+    }
+
+  });
+
+}
+
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+
+    lightbox?.classList.remove("show");
+
+  }
+
+});
