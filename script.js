@@ -197,7 +197,7 @@ filterButtons.forEach((button) => {
 });
 })();
 // ====================================
-// LIGHTBOX
+// LIGHTBOX AVANÇADO
 // ====================================
 
 const lightbox =
@@ -206,56 +206,202 @@ const lightbox =
 const lightboxImage =
   document.getElementById("lightboxImage");
 
-const galleryImages =
-  document.querySelectorAll(".gallery-image");
+const lightboxCaption =
+  document.getElementById("lightboxCaption");
 
-const lightboxClose =
+const closeBtn =
   document.querySelector(".lightbox-close");
 
-galleryImages.forEach((image) => {
+const prevBtn =
+  document.querySelector(".lightbox-prev");
 
-  image.addEventListener("click", () => {
+const nextBtn =
+  document.querySelector(".lightbox-next");
 
-    lightboxImage.src = image.src;
+const images =
+  [...document.querySelectorAll(".gallery-image")];
 
-    lightboxImage.alt = image.alt;
+let currentIndex = 0;
 
-    lightbox.classList.add("show");
+// =========================
+// Abrir
+// =========================
 
-  });
+function openLightbox(index) {
 
-});
+  currentIndex = index;
 
-if (lightboxClose) {
+  const image = images[index];
 
-  lightboxClose.addEventListener("click", () => {
+  lightboxImage.src =
+    image.src;
 
-    lightbox.classList.remove("show");
+  lightboxImage.alt =
+    image.alt;
 
-  });
+  lightboxCaption.innerHTML = `
+
+    <strong>${image.alt}</strong>
+
+  `;
+
+  lightbox.classList.add("show");
+
+  lightbox.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  closeBtn.focus();
 
 }
 
-if (lightbox) {
+// =========================
+// Atualizar
+// =========================
 
-  lightbox.addEventListener("click", (event) => {
+function updateLightbox() {
 
-    if (event.target === lightbox) {
+  const image =
+    images[currentIndex];
 
-      lightbox.classList.remove("show");
+  lightboxImage.src =
+    image.src;
 
-    }
+  lightboxImage.alt =
+    image.alt;
 
-  });
+  lightboxCaption.innerHTML = `
+
+    <strong>${image.alt}</strong>
+
+  `;
 
 }
 
-document.addEventListener("keydown", (event) => {
+// =========================
+// Fechar
+// =========================
 
-  if (event.key === "Escape") {
+function closeLightbox() {
 
-    lightbox?.classList.remove("show");
+  lightbox.classList.remove(
+    "show"
+  );
+
+  lightbox.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
+
+// =========================
+// Próxima
+// =========================
+
+function nextImage() {
+
+  currentIndex++;
+
+  if (currentIndex >= images.length) {
+
+    currentIndex = 0;
 
   }
 
+  updateLightbox();
+
+}
+
+// =========================
+// Anterior
+// =========================
+
+function prevImage() {
+
+  currentIndex--;
+
+  if (currentIndex < 0) {
+
+    currentIndex =
+      images.length - 1;
+
+  }
+
+  updateLightbox();
+
+}
+
+// =========================
+// Eventos
+// =========================
+
+images.forEach((image,index) => {
+
+  image.addEventListener(
+    "click",
+    () => openLightbox(index)
+  );
+
+});
+
+closeBtn?.addEventListener(
+  "click",
+  closeLightbox
+);
+
+nextBtn?.addEventListener(
+  "click",
+  nextImage
+);
+
+prevBtn?.addEventListener(
+  "click",
+  prevImage
+);
+
+lightbox?.addEventListener(
+  "click",
+  (event) => {
+
+    if (event.target === lightbox) {
+
+      closeLightbox();
+
+    }
+
+  }
+);
+
+// =========================
+// Teclado
+// =========================
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      !lightbox.classList.contains("show")
+    ) return;
+
+    switch(event.key){
+
+      case "Escape":
+        closeLightbox();
+        break;
+
+      case "ArrowRight":
+        nextImage();
+        break;
+
+      case "ArrowLeft":
+        prevImage();
+        break;
+
+    }
+
+  }
+);
 });
